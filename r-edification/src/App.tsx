@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import LoginForm from './views/form'
-import { toast, Toaster } from 'sonner';
+import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
 const App = () => {
