@@ -1,19 +1,22 @@
-// import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './views/home.tsx'
-import { Toaster } from 'sonner'
-import BulkEnrollmentForm from './views/register.tsx'
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import App from './App';
+import Home from './views/home';
+import { AuthProvider } from './views/AuthContext'; // Import AuthProvider
+import { Toaster } from 'sonner';
+import ProtectedRoute from './views/PrivateRoute';
+import './index.css';
+import BulkEnrollmentForm from './views/register';
 
-createRoot(document.getElementById('root')!).render(
-<BrowserRouter>
-<Routes>
-  <Route path='/' element ={<App />} />
-  <Route path='home' element={<Home />} />
-  <Route path='register' element={<BulkEnrollmentForm />} />
-</Routes>
-<Toaster position="top-center" />
-</BrowserRouter>
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <BrowserRouter>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<App />} /> {/* Login route */}
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} /> {/* Protect the home route */}
+        <Route path="/register" element={<ProtectedRoute><BulkEnrollmentForm /></ProtectedRoute>} /> 
+      </Routes>
+      <Toaster position="top-center" />
+    </AuthProvider>
+  </BrowserRouter>
+);
