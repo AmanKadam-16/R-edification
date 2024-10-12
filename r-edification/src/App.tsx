@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginForm from './views/form';
 import { useAuth } from './views/AuthContext'; // Import AuthContext
 
@@ -9,6 +9,14 @@ const App = () => {
     userName: '',
     password: ''
   });
+  useEffect(()=>{
+    if(sessionStorage.getItem('userName') === null) {
+      sessionStorage.setItem('userName', 'admin@gmail.com');
+    }
+    if(sessionStorage.getItem('password') === null) {
+      sessionStorage.setItem('pwd', '123');
+    }
+  },[]);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
