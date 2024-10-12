@@ -132,7 +132,7 @@ export default function BulkEnrollmentForm() {
         <CardContent>
           <p>Number of students: {students.length}</p>
           <p>Course: {courseDetails.find((item) => item.Id === course)?.courseName || "Not selected"}</p>
-          <p>Total cost: ${students.length * coursePrice}</p> {/* Display total cost */}
+          <p>Total cost: Rs. {students.length * coursePrice} Only</p> {/* Display total cost */}
         </CardContent>
       </Card>
 
